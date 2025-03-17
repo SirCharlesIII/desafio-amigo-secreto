@@ -1,14 +1,18 @@
-//O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
-//O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 let amigos = [];
+let listaId = 'listaAmigos'
+
+function limparCampos(id) {
+    let campo = document.getElementById(id);
+    campo.innerHTML = '';
+}
 
 function todosAmigos() {
-    let ul = document.getElementById('listaAmigos');
-    ul.innerHTML = '';
+    let ulAmigos = document.getElementById(listaId);
+    limparCampos(listaId)
     for (n = 0; n < amigos.length; n++) {
         let li = document.createElement('li');
         li.appendChild(document.createTextNode(amigos[n]));
-        ul.appendChild(li);
+        ulAmigos.appendChild(li);
     }
 }
 
@@ -18,13 +22,28 @@ function adicionarAmigo() {
     if (amigo.length > 0) {
         amigos.push(amigo);
         todosAmigos();
-        limparInput();
+        let texto = document.querySelector('input');
+        texto.value = '';
     } else {
         alert('Por favor, insira um nome.');
     }
 }
 
-function limparInput() {
-    amigo = document.querySelector("input");
-    amigo.value = '';
+function gerarNumero() {
+    let numeroAleatorio = Math.floor(Math.random() * amigos.length);
+    if (amigos.length > 0) {
+        console.log(numeroAleatorio);
+        return numeroAleatorio;
+    }
+}
+
+function sortearAmigo() {
+    limparCampos(listaId);
+    if (amigos.length > 0) {
+        let escolhido = amigos[gerarNumero()];
+        let ul = document.getElementById('resultado');
+        ul.innerHTML = `Parábens o seu amigo secreto é ${escolhido}`;
+    } else {
+        alert('Por favor, adicione nomes antes de sortear um amigo secreto.')
+    }
 }
