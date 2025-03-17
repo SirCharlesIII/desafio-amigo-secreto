@@ -8,7 +8,7 @@ function limparCampos(id) {
 
 function todosAmigos() {
     let ulAmigos = document.getElementById(listaId);
-    limparCampos(listaId)
+    limparCampos(listaId);
     for (n = 0; n < amigos.length; n++) {
         let li = document.createElement('li');
         li.appendChild(document.createTextNode(amigos[n]));
@@ -18,7 +18,6 @@ function todosAmigos() {
 
 function adicionarAmigo() {
     let amigo = document.querySelector("input").value;
-
     if (amigo.length > 0) {
         amigos.push(amigo);
         todosAmigos();
@@ -31,10 +30,7 @@ function adicionarAmigo() {
 
 function gerarNumero() {
     let numeroAleatorio = Math.floor(Math.random() * amigos.length);
-    if (amigos.length > 0) {
-        console.log(numeroAleatorio);
-        return numeroAleatorio;
-    }
+    return numeroAleatorio;
 }
 
 function sortearAmigo() {
@@ -42,8 +38,8 @@ function sortearAmigo() {
     if (amigos.length > 0) {
         let escolhido = amigos[gerarNumero()];
         let ul = document.getElementById('resultado');
-        ul.innerHTML = `Parábens o seu amigo secreto é ${escolhido}`;
+        ul.innerHTML = `Parabéns o seu amigo secreto é: ${escolhido}`;
     } else {
-        alert('Por favor, adicione nomes antes de sortear um amigo secreto.')
+        alert('Por favor, adicione nomes antes de sortear um amigo secreto.');
     }
 }
